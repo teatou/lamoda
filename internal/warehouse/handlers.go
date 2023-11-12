@@ -6,4 +6,5 @@ type Handlers interface {
 	CreateItemsReserve() fiber.Handler
 	ReleaseItemsReserve() fiber.Handler
 	GetItemsLeft() fiber.Handler
+	GetItemFromAllWarehouses() fiber.Handler
 }

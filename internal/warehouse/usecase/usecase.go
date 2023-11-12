@@ -27,3 +27,11 @@ func (w WarehouseUsecase) GetItemsLeft(warehouseId int) ([]warehouse.GetItemsFro
 	}
 	return items, err
 }
+
+func (w WarehouseUsecase) GetItemFromAllWarehouses(itemId int) ([]warehouse.GetItemFromAllWarehousesResponse, error) {
+	items, err := w.warehouseRepo.GetItemRemainder(itemId)
+	if err != nil {
+		return nil, err
+	}
+	return items, err
+}

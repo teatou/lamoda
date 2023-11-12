@@ -31,3 +31,9 @@ type GetItemsFromOneResponse struct {
 	Quantity       int    `json:"quantity" db:"quantity"`
 	WarehouseTitle string `json:"warehouse_title" db:"warehouse_title"`
 }
+
+type GetItemFromAllWarehousesResponse struct {
+	ItemTitle      string `json:"item_title" db:"item_title"`
+	WarehouseTitle string `json:"warehouse_title" db:"warehouse_title"`
+	Quantity       int    `json:"quantity" db:"quantity"`
+}

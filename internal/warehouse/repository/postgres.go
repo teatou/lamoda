@@ -64,19 +64,20 @@ func (p PostgresRepository) GetItemsFromOne(warehouseId int) ([]warehouse.GetIte
 	return data, nil
 }
 
-func (p PostgresRepository) GetItemRemainder(itemId int) error {
-	q := `SELECT item.id, item.title, warehouse.id, warehouse.title, warehouse.available, warehouse_item.quantity
+func (p PostgresRepository) GetItemRemainder(itemId int) ([]warehouse.GetItemFromAllWarehousesResponse, error) {
+	var data []warehouse.GetItemFromAllWarehousesResponse
+	q := `SELECT item.title as item_title, warehouse.title as warehouse_title, warehouse_item.quantity as quantity
 		FROM item
 		JOIN warehouse_item ON item.id = warehouse_item.item_id
 		JOIN warehouse ON warehouse.id = warehouse_item.warehouse_id
 		WHERE item.id = $1
 		AND warehouse.available = true;
 	`
-	_, err := p.db.Exec(q, itemId)
+	err := p.db.Select(&data, q, itemId)
 	if err != nil {
 		p.logger.Error(err)
-		return err
+		return nil, err
 	}
 
-	return nil
+	return data, nil
 }

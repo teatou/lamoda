@@ -76,3 +76,21 @@ func (w WarehouseHandler) GetItemsLeft() fiber.Handler {
 		return c.Status(http.StatusOK).JSON(items)
 	}
 }
+
+func (w WarehouseHandler) GetItemFromAllWarehouses() fiber.Handler {
+	return func(c *fiber.Ctx) error {
+		var itemId int
+		if err := c.BodyParser(&itemId); err != nil {
+			w.logger.Error(err)
+			return c.Status(http.StatusBadRequest).SendString("bad body to parse")
+		}
+
+		items, err := w.warehouseUC.GetItemFromAllWarehouses(itemId)
+		if err != nil {
+			w.logger.Error(err)
+			return c.Status(http.StatusBadRequest).SendString("error getting item info")
+		}
+
+		return c.Status(http.StatusOK).JSON(items)
+	}
+}

@@ -8,7 +8,7 @@
 OpenAPI документация лежит в /api
 
 ## Основное задание
-1. Резервирование товаров<br>
+1. Резервирование товаров по массиву уникальных кодов<br>
 `curl --location 'localhost:8080/warehouse/items/reserve' \
    --header 'Content-Type: application/json' \
    --data '{
@@ -17,7 +17,7 @@ OpenAPI документация лежит в /api
         "eelb2"
     ]
 }'`
-2. Освобождение резерва товаров<br>
+2. Освобождение резерва товаров по массиву уникальных кодов<br>
 `curl --location 'localhost:8080/warehouse/items/release' \
    --header 'Content-Type: application/json' \
    --data '{
@@ -26,20 +26,19 @@ OpenAPI документация лежит в /api
         "eelb2"
     ]
 }'`
-3. Получение товаров на складе<br>
+3. Получение товаров на складе по id склада<br>
 `curl --location 'localhost:8080/warehouse/items/left' \
    --header 'Content-Type: application/json' \
    --data '{
     "id": 1
 }'`
 
-Проверять правильность резервации и освобождения можно путем совершения запросов 3 -> 1 -> 3 -> 2 -> 3 и так далее с изменением id склада и кодов товаров
+Проверять правильность резервирования и освобождения можно путем совершения запросов 3 -> 1 -> 3 -> 2 -> 3 и так далее с изменением id склада и кодов товаров
 
-## Дополнительное задание 3
-4. Создание сегмента с изначальными пользователями<br>
-`curl --location 'localhost:8080/segment/add' \
+## Дополнительное задание
+4. Получение товаров со всех складов по id товара<br>
+`curl --location 'localhost:8080/warehouse/item' \
    --header 'Content-Type: application/json' \
    --data '{
-   "slug": "segment_4",
-   "percent": 50
-   }'`
+    "id": 1
+}'`
