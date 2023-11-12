@@ -42,3 +42,13 @@ OpenAPI документация лежит в /api
    --data '{
     "id": 1
 }'`
+
+# База данных
+1. Таблица item
+![item](https://github.com/teatou/lamoda/raw/main/api/pics/item_sql.png)
+
+2. Таблица warehouse
+![item](https://github.com/teatou/lamoda/raw/main/api/pics/warehouse_sql.png)
+
+3. Таблица warehouse_item
+![item](https://github.com/teatou/lamoda/raw/main/api/pics/warehouse_item_sql.png)
