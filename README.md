@@ -44,11 +44,11 @@ OpenAPI документация лежит в /api
 }'`
 
 # База данных
-1. Таблица item
+1. Таблица item<br>
 ![item](https://github.com/teatou/lamoda/raw/main/api/pics/item_sql.png)
 
-2. Таблица warehouse
+2. Таблица warehouse<br>
 ![item](https://github.com/teatou/lamoda/raw/main/api/pics/warehouse_sql.png)
 
-3. Таблица warehouse_item
+3. Таблица warehouse_item<br>
 ![item](https://github.com/teatou/lamoda/raw/main/api/pics/warehouse_item_sql.png)
