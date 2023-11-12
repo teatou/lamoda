@@ -18,7 +18,7 @@ OpenAPI документация лежит в /api
     ]
 }'`
 2. Освобождение резерва товаров<br>
-`curl --location 'localhost:8080/user/remove' \
+`curl --location 'localhost:8080/warehouse/items/release' \
    --header 'Content-Type: application/json' \
    --data '{
     "codes": [
