@@ -11,3 +11,19 @@ func NewWarehouseUsecase(warehouseRepo warehouse.Repository) warehouse.Usecase {
 		warehouseRepo: warehouseRepo,
 	}
 }
+
+func (w WarehouseUsecase) CreateItemsReserve(codes []string) error {
+	err := w.warehouseRepo.ReserveItems(codes)
+	return err
+}
+func (w WarehouseUsecase) ReleaseItemsReserve(codes []string) error {
+	err := w.warehouseRepo.ReleaseItems(codes)
+	return err
+}
+func (w WarehouseUsecase) GetItemsLeft(warehouseId int) ([]warehouse.GetItemsFromOneResponse, error) {
+	items, err := w.warehouseRepo.GetItemsFromOne(warehouseId)
+	if err != nil {
+		return nil, err
+	}
+	return items, err
+}

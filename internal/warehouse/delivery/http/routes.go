@@ -6,5 +6,7 @@ import (
 )
 
 func MapWarehouseRoutes(router fiber.Router, h warehouse.Handlers) {
-	router.Post("/", nil)
+	router.Post("/items/reserve", h.CreateItemsReserve())
+	router.Post("/items/release", h.ReleaseItemsReserve())
+	router.Post("/items/left", h.GetItemsLeft())
 }

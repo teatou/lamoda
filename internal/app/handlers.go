@@ -9,7 +9,7 @@ import (
 	storage_postgres "github.com/teatou/lamoda/pkg/storage/postgres"
 )
 
-func (a *App) MapHandlers(router *fiber.App, logger *logger.Logger) error {
+func (a *App) MapHandlers(router *fiber.App, logger logger.Logger) error {
 	db, err := storage_postgres.InitPsqlDB(a.cfg.Postgres)
 	if err != nil {
 		return nil

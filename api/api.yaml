@@ -1,146 +1,92 @@
 openapi: 3.0.1
 info:
-  title: Sample REST server
-  description: TODO
+  title: Lamoda test
+  description: Api for managing a warehouse
   version: 1.0.0
 servers:
-  - url: https://127.0.01:8080
+  - url: http://127.0.0.1:8080
 paths:
-  /user/add:
+  /warehouse/items/reserve:
     post:
-      summary: Add a user
+      summary: Reserve a list of items based on their unique code
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/codes'
       responses:
         '200':
-          description: User added successfully
+          description: OK
           content: {}
         '400':
-          description: Incorrect user id
+          description: Bad request
           content: {}
-  /user/remove:
+  /warehouse/items/release:
+    post:
+      summary: Release a list of items from reservation based on their unique code
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/codes'
+      responses:
+        '200':
+          description: OK
+          content: {}
+        '400':
+          description: Bad request
+          content: {}
+  /warehouse/items/left:
     post:
       summary: Remove a user
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/WarehouseId'
       responses:
         '200':
-          description: User removed successfully
+          description: OK
           content: {}
         '400':
-          description: Incorrect user id
-          content: {}
-  /segment/add:
-    post:
-      summary: Add a segment
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Segment'
-      responses:
-        '200':
-          description: Segment added successfully
-          content: {}
-        '400':
-          description: Incorrect segment data
-          content: {}
-  /segment/remove:
-    post:
-      summary: Remove a user
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Segment'
-      responses:
-        '200':
-          description: Segment removed successfully
-          content: {}
-        '400':
-          description: Incorrect user id
-          content: {}
-        '500':
-          description: Server problems
-          content: {}
-  /usersegments/update:
-    post:
-      summary: Update user segments
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateUserSegments'
-      responses:
-        '200':
-          description: User segments updated successfully
-          content: {}
-        '400':
-          description: Incorrect user segments data
-          content: {}
-  /usersegments/get:
-    post:
-      summary: Get user active segments
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-      responses:
-        '200':
-          description: gg
+          description: Bad request
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: string
-                  default: avito_perfomance_vas
-        '400':
-          description: Incorrect user id
-          content: {}
+                $ref: '#/components/schemas/GetLeftResp'
 components:
   schemas:
-    User:
+    codes:
+      type: object
+      properties:
+        codes:
+          type: array
+          items:
+            type: string
+            default: "uniquecode"
+    WarehouseId:
       type: object
       properties:
         id:
           type: integer
           default: 1
-      required:
-        - id
-    Segment:
-      type: object
-      properties:
-        slug:
-          type: string
-          default: avito_voice_messages
-        percent:
-          type: string
-          default:  50
-      required:
-        - slug
-    UpdateUserSegments:
-      type: object
-      properties:
-        user_id:
-          type: integer
-          default: 1
-        add_slugs:
-          type: array
-          items:
+    GetLeftResp:
+      type: array
+      items:
+        type: object
+        properties:
+          item_title:
             type: string
-            default: avito_voice_messages
-        delete_slugs:
-          type: array
-          items:
+            default: "hoodie"
+          item_code:
             type: string
-            default: avito_perfomance_vas
-      required:
-        - user_id
+            default: "eelb2"
+          reserved:
+            type: boolean
+            default: false
+          quantity:
+            type: integer
+            default: 0
+          warehouse_title:
+            type: string
+            default: "main"

@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS warehouse (
-    id SERIAL
-    name VARCHAR2
+    id SERIAL UNIQUE,
+    title VARCHAR,
     available BOOLEAN
 )

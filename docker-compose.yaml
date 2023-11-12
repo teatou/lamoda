@@ -10,7 +10,7 @@ services:
     depends_on:
       - db
     environment:
-      CONFIG: config/dev.yaml
+      CONFIG: configs/dev.yaml
 
   db:
     restart: always

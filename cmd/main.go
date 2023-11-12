@@ -13,8 +13,8 @@ const configEnv = "CONFIG"
 func main() {
 	val, ok := os.LookupEnv(configEnv)
 	if !ok {
-		val = "configs/dev.yaml"
-		// panic("config env not found")
+		// val = "configs/dev.yaml"
+		panic("config env not found")
 	}
 
 	cfg, err := config.LoadConfig(val)

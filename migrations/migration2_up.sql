@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS item (
-    id SERIAL
-    name VARCHAR2
-    code VARCHAR2
+    id SERIAL UNIQUE,
+    title VARCHAR,
+    code VARCHAR UNIQUE,
+    reserved BOOLEAN
 )
