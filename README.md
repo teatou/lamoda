@@ -1,5 +1,5 @@
 # Интрукция по запуску
-1. make up<br>
+1. `make up`<br>
 или<br>
 1. Запустить контейнер с базой данных<br>
 `docker compose up db`
